@@ -1,5 +1,6 @@
 package com.york.albertososa.fullstackcustomermanagementapp.service;
 
+import com.york.albertososa.fullstackcustomermanagementapp.exception.UserNotFoundException;
 import com.york.albertososa.fullstackcustomermanagementapp.model.Customer;
 import com.york.albertososa.fullstackcustomermanagementapp.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,8 @@ public class CustomerService {
     }
 
     public Customer findCustomerById(Long id) {
-        return customerRepository.findCustomerById(id);
+        return customerRepository.findCustomerById(id)
+                .orElseThrow(() -> new UserNotFoundException("User by id " + id + " was not found"));
     }
 
     public void deleteCustomer(Long id) {
