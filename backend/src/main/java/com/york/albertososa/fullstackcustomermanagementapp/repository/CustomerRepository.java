@@ -1,4 +1,4 @@
-package com.york.albertososa.fullstackcustomermanagementapp.repo;
+package com.york.albertososa.fullstackcustomermanagementapp.repository;
 
 import com.york.albertososa.fullstackcustomermanagementapp.model.Customer;
 
