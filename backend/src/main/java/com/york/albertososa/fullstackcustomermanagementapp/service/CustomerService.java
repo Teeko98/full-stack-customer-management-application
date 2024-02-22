@@ -17,4 +17,20 @@ public class CustomerService {
     public Customer addCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
+
+    public Iterable<Customer> findAllCustomers() {
+        return customerRepository.findAll();
+    }
+
+    public Customer updateCustomer(Customer customer) {
+        return customerRepository.save(customer);
+    }
+
+    public Customer findCustomerById(Long id) {
+        return customerRepository.findCustomerById(id);
+    }
+
+    public void deleteCustomer(Long id) {
+        customerRepository.deleteById(id);
+    }
 }
