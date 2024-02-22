@@ -6,6 +6,8 @@ import com.york.albertososa.fullstackcustomermanagementapp.repository.CustomerRe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerService {
     private final CustomerRepository customerRepository;
@@ -19,8 +21,8 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public Iterable<Customer> findAllCustomers() {
-        return customerRepository.findAll();
+    public List<Customer> findAllCustomers() {
+        return (List<Customer>) customerRepository.findAll();
     }
 
     public Customer updateCustomer(Customer customer) {

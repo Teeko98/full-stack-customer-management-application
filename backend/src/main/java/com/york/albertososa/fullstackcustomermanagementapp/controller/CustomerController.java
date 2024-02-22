@@ -2,27 +2,49 @@ package com.york.albertososa.fullstackcustomermanagementapp.controller;
 
 import com.york.albertososa.fullstackcustomermanagementapp.model.Customer;
 import com.york.albertososa.fullstackcustomermanagementapp.repository.CustomerRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.york.albertososa.fullstackcustomermanagementapp.service.CustomerService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/customer")
 public class CustomerController {
-    private final CustomerRepository customerRepository;
+    private final CustomerService customerService;
 
-    public CustomerController(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    public CustomerController(CustomerRepository customerRepository, CustomerService customerService) {
+        this.customerService = customerService;
     }
 
-    @GetMapping("/customers")
-    public Iterable<Customer> findAllCustomers() {
-        return this.customerRepository.findAll();
+    @GetMapping("/all")
+    public ResponseEntity<List<Customer>> getAllCustomers () {
+        List<Customer> customers = customerService.findAllCustomers();
+        return new ResponseEntity<>(customers, HttpStatus.OK);
     }
 
-    @SuppressWarnings("null") //delete and fix properly later
-    @PostMapping("/customers")
-    public Customer addCustomer(@RequestBody Customer customer) {
-        return this.customerRepository.save(customer);
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Customer> getCustomerById (@PathVariable("id") Long id) {
+        Customer customer = customerService.findCustomerById(id);
+        return new ResponseEntity<>(customer, HttpStatus.OK);
     }
-}
+
+    @PostMapping("/add")
+    public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
+        Customer  newCustomer = customerService.addCustomer(customer);
+        return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) {
+        Customer updatedCustomer = customerService.updateCustomer(customer);
+        return new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteCustomer(@PathVariable("id") Long id) {
+        customerService.deleteCustomer(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+ }
