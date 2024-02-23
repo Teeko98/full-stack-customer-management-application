@@ -4,15 +4,16 @@ import { Customer } from './customer';
 import { CustomerService } from './customer.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
+import { HeaderComponent } from './header/header.component';
+
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
+    imports: [RouterOutlet, HeaderComponent]
 })
 export class AppComponent implements OnInit {
-  title = 'frontend';
 
   public customers: Customer[] = [];
 
