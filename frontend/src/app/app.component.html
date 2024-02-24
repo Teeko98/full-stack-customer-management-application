@@ -1,6 +1,4 @@
 <app-header></app-header>
-@for (customer of customers; track customer.id) {
-  <div>
-    {{ customer.firstName }}
-  </div>
-}
+<app-customer-table [customers]="customers"></app-customer-table>
+
+

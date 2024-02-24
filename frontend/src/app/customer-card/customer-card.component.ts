@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Customer } from '../customer';
 
 @Component({
@@ -9,6 +9,7 @@ import { Customer } from '../customer';
   styleUrl: './customer-card.component.css'
 })
 export class CustomerCardComponent {
+  @Input()
   customer!: Customer;
 
 

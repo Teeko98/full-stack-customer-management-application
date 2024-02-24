@@ -5,13 +5,14 @@ import { CustomerService } from './customer.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { HeaderComponent } from './header/header.component';
+import { CustomerTableComponent } from './customer-table/customer-table.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, HeaderComponent]
+    imports: [RouterOutlet, HeaderComponent, CustomerTableComponent]
 })
 export class AppComponent implements OnInit {
 
